@@ -22,3 +22,13 @@ export const addCity = tryCatch(async(req,res,next)=>{
 
 
 })
+
+export const getCity = tryCatch(async(req,res,next)=>{
+    const cityData = await citymodel.find()
+    if(!cityData){
+        return next(new Error("no data found",400))
+
+    }
+    return res.status(200).send({status:true,totalCity:`${cityData.length}`,data:cityData})
+
+})
